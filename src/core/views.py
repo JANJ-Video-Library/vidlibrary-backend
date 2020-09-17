@@ -5,6 +5,9 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from .serializers import VideoSerializer
+from .models import Video
+
 # Create your views here.
 class VideoView(APIView):
     def get(self, request, *args, **kwargs):
@@ -14,6 +17,13 @@ class VideoView(APIView):
             'category' : 'Executive Speaker Series'
         }
         return Response(data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = VideoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Respose(sereializer.errors)
 
 
 '''
