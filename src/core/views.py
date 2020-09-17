@@ -23,7 +23,7 @@ class VideoView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Respose(sereializer.errors)
+        return Response(serializer.errors)
 
 
 '''
