@@ -11,12 +11,10 @@ from .models import Video
 # Create your views here.
 class VideoView(APIView):
     def get(self, request, *args, **kwargs):
-        data = {
-            'link': 'https://janj.webex.com/janj/lsr.php?RCID=3e449732b66c4854abd390828d145f43',
-            'title' : 'JA  Merck Speaker Series Spotlighting Career Lessons from Merck Finance Leaders',
-            'category' : 'Executive Speaker Series'
-        }
-        return Response(data)
+        # query set
+        qs = Video.objects.all()
+        serializer = VideoSerializer(qs, many=True)
+        return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
         serializer = VideoSerializer(data=request.data)
