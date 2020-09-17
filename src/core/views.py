@@ -6,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import VideoSerializer
-from .models import Video
+from .serializers import VideoSerializer, VideoTypeSerializer
+from .models import Video, VideoType
 
 # Create your views here.
 class VideoView(APIView):
@@ -20,6 +20,21 @@ class VideoView(APIView):
 
     def post(self, request, *args, **kwargs):
         serializer = VideoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+class VideoTypeView(APIView):
+    permission_classes = (IsAuthenticated, )
+    def get(self, request, *args, **kwargs):
+        # query set
+        qs = VideoType.objects.all()
+        serializer = VideoTypeSerializer(qs, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = VideoTypeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
