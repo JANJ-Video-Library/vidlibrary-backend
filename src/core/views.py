@@ -4,12 +4,14 @@ from django.shortcuts import render
 # third party imports
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import VideoSerializer
 from .models import Video
 
 # Create your views here.
 class VideoView(APIView):
+    permission_classes = (IsAuthenticated, )
     def get(self, request, *args, **kwargs):
         # query set
         qs = Video.objects.all()
