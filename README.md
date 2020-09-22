@@ -14,11 +14,6 @@ The backend was made with [Django](https://www.djangoproject.com/)
 The backend must be running in order to access it through the API endpoints
 
 # API Endpoints
-
-<h3>
-/api
-</h3>
-
 <h4>
 /
 </h4>
@@ -36,3 +31,19 @@ requires API token
 requires API token 
 <br>
 Returns all videos
+
+<h4>
+/categories
+</h4>
+[POST]<br>
+requires API token 
+<br>
+{<br>
+    “type”: “< video type/category >”,<br>
+}<br>
+
+</h4>
+[GET]<br>
+requires API token 
+<br>
+Returns all video types
