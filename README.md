@@ -36,3 +36,19 @@ requires API token
 requires API token 
 <br>
 Returns all videos
+
+<h4>
+/categories
+</h4>
+[POST]<br>
+requires API token 
+<br>
+{<br>
+    “type”: “< video title >”,<br>
+}<br>
+
+</h4>
+[GET]<br>
+requires API token 
+<br>
+Returns all video types
