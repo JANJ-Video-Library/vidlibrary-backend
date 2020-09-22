@@ -39,7 +39,7 @@ Returns all videos
 requires API token 
 <br>
 {<br>
-    “type”: “< video title >”,<br>
+    “type”: “< video type/category >”,<br>
 }<br>
 
 </h4>
